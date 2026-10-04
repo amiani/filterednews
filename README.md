@@ -35,6 +35,13 @@ probability. Use it to tune the decision in `src/AiNewsFilter.ts`. Bump
 | `SCORE_CONCURRENCY`  | `4`                    |                                                     |
 | `HOST` / `PORT`      | `127.0.0.1` / `3000`   | Put a reverse proxy in front, or set `HOST=0.0.0.0` |
 
+## Deploy
+
+Runs on the feeniks VPS at https://buns.run/fnews and is managed by Komodo from
+[amiani/feeniks-komodo](https://github.com/amiani/feeniks-komodo)
+(`resources/fnews.toml`, `stacks/fnews/`). Komodo builds the `Dockerfile`
+on the server. Run the `deploy-fnews` procedure to build and redeploy.
+
 ## Development
 
 ```sh
