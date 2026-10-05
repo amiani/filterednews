@@ -71,8 +71,11 @@ ${renderBody(digest)}
 <script>
   for (const el of document.querySelectorAll("time[datetime]")) {
     el.textContent = new Date(el.dateTime).toLocaleString(undefined, {
-      dateStyle: "medium",
-      timeStyle: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
       timeZoneName: "short",
     });
   }
