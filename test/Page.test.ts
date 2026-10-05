@@ -25,8 +25,14 @@ describe("renderPage", () => {
     expect(html).toContain(
       "&#60;script&#62;alert(1)&#60;/script&#62; &#38; GPT",
     );
-    expect(html).not.toContain("<script>");
+    expect(html).not.toContain("<script>alert(1)");
     expect(html).not.toContain("Gardening tips");
+  });
+
+  it("marks the refresh time for local-timezone formatting", () => {
+    expect(renderPage(digest)).toContain(
+      '<time datetime="2026-10-04T12:00:00.000Z">',
+    );
   });
 
   it("renders a loading state before the first refresh", () => {

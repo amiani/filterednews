@@ -39,9 +39,10 @@ const renderBody = (digest: Digest | undefined): string => {
     digest.failedCount > 0
       ? ` · ${digest.failedCount} could not be scored`
       : "";
+  const refreshedAt = escapeHtml(DateTime.formatIso(digest.refreshedAt));
   return `${list}
 <footer>
-  Updated ${escapeHtml(DateTime.formatIso(digest.refreshedAt))} ·
+  Updated <time datetime="${refreshedAt}">${refreshedAt}</time> ·
   threshold ${percent(digest.threshold)} · ${digest.showHnCount} Show HN skipped${failed}
 </footer>`;
 };
@@ -67,5 +68,14 @@ export const renderPage = (digest: Digest | undefined): string =>
 <body>
 <h1>AI news on the Hacker News front page</h1>
 ${renderBody(digest)}
+<script>
+  for (const el of document.querySelectorAll("time[datetime]")) {
+    el.textContent = new Date(el.dateTime).toLocaleString(undefined, {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZoneName: "short",
+    });
+  }
+</script>
 </body>
 </html>`;
